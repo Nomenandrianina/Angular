@@ -18,13 +18,14 @@ import { NgxLoadingModule } from 'ngx-loading';
 })
 export default class LoginComponent {
   message: any;
+  val = 'nomenandrianinaantonio@gmail.com';
   public loading = false;
   loginForm = new FormGroup({
     email:  new FormControl(null, [ Validators.required, Validators.email]),
     mdp:  new FormControl(null, [ Validators.required]),
   });
 
-  constructor(private authService: AuthService,private router: Router) { 
+  constructor(private authService: AuthService,private router: Router) {
     this.authService.Check_Connected_atelier();
   }
 
