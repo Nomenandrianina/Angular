@@ -19,12 +19,12 @@ export default class LoginclientComponent {
   message: any;
   public loading = false;
   loginForm = new FormGroup({
-    email:  new FormControl(null, [ Validators.required, Validators.email]),
-    mdp:  new FormControl(null, [ Validators.required]),
+    email:  new FormControl('harilovajohnny@gmail.com', [ Validators.required, Validators.email]),
+    mdp:  new FormControl('wyCP6AmJeg3T8vi', [ Validators.required]),
   });
 
-  constructor(private authService: AuthService,private router: Router) { 
-    this.authService.Connected_client();  
+  constructor(private authService: AuthService,private router: Router) {
+    this.authService.Connected_client();
   }
 
   get email(){return this.loginForm.get('email'); }
