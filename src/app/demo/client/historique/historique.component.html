@@ -1,0 +1,38 @@
+<div class="row">
+  <app-card cardTitle="Historique des réparations">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Imgaes</th>
+      <th scope="col">Immatricules</th>
+      <th scope="col">Marques</th>
+      <th scope="col">Types</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody cdkDropList (cdkDropListDropped)="onDrop($event)">
+    <tr *ngFor="let car of list | filter: filterTerm" cdkDrag cdkDragLockAxis="y">
+      <td><img src="{{ car.image }}" alt="" style="width: 100px;border-radius: 5px;"></td>
+      <td>{{ car.immatriculation }}</td>
+      <td>{{ car.marque }}</td>
+      <td>{{ car.type }}</td>
+      <td>
+        <a routerLink="/client/historique/detail/{{ car._id }}">
+          <button class="btn btn-primary" >Détails</button>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</app-card>
+<div class="my-container">
+  <ng-template #customLoadingTemplate>
+      <div class="custom-class">
+          <h3>
+              Loading...
+          </h3>
+      </div>
+  </ng-template>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+</div>
+</div>

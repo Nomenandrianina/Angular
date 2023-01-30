@@ -1,0 +1,58 @@
+<div *ngIf="message" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Nouveau pièce enregistré!</strong>
+  <button type="button" (click)="removeMessage" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div>
+  <form  [formGroup]="form"  (ngSubmit)="onSubmit()"  method="POST">
+      <app-card cardTitle="* Champs requis">
+        <div class="col-sm-5" style="padding-left: 10%;">
+          <label for="exampleInputEmail1">photo *</label>
+          <div class="form-group">
+            <input type="file" id="file" (change)="onChange($event)" style="display:none">
+            <label for="file">
+              <img  [src]="imageSrc" style="width: 50 px;height: 145px;"  alt="image">
+              
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Désignation *</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" formControlName="piece_name" aria-describedby="emailHelp" placeholder="disque embrayage">
+            <small id="emailHelp" class="form-text text-muted"></small>
+            <div *ngIf="piece_name_required" class="alert" style="color: red;">Veuillez entrer la désignation</div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">prix *</label>
+            <input type="number" class="form-control" id="exampleInputEmail1" formControlName="prix" aria-describedby="emailHelp" placeholder="prix">
+            <small id="emailHelp" class="form-text text-muted"></small>
+            <div *ngIf="prix_required" class="alert" style="color: red;">Veuillez entrer le prix</div>          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Prix main oeuvre: *</label>
+            <input type="email" class="form-control" formControlName="main_oeuvre" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="20000">
+            <small id="emailHelp" class="form-text text-muted"></small>
+            <div *ngIf="main_oeuvre_required" class="alert" style="color: red;">Veuillez entrer le prix main oeuvre</div>
+          </div>
+          <div class="d-grid mt-4">
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-secondary">Valider</button>
+            </div>
+          </div>
+        </div>
+      </app-card>
+  </form>
+  <!-- <app-card cardTitle="Réception des voitures">
+    
+  </app-card> -->
+</div>
+
+<div class="my-container">
+  <ng-template #customLoadingTemplate>
+      <div class="custom-class">
+          <h3>
+              Loading...
+          </h3>
+      </div>
+  </ng-template>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+</div>

@@ -1,0 +1,58 @@
+<div class="row">
+  <app-card cardTitle="Réception des voitures">
+    <table   class="table">
+      <thead>
+        <tr>
+          <th>Images</th>
+          <th>Marques</th>
+          <th>Types</th>
+          <th>Description</th>
+          <th>Pièces</th>
+          <th>Quantité</th>
+          <th>Avancement</th>
+          <th>Actions</th>
+          <th>Bon de sortie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of list">
+          <td><img src="{{ car.Car.image }}" alt="" style="width: 100px;border-radius: 5px;"></td>
+          <td>{{ car.Car.marque }}</td>
+          <td>{{ car.Car.type }}</td>
+          <td>{{ car.description }}</td>
+          <td>{{ car.Piece.piece_name }}</td>
+          <td>{{ car.quantite }} </td>
+          <td>
+            <div>
+              <progress-bar  progress="{{ car.avancement }}" [color]="'#488aff'">
+              </progress-bar>
+            </div>
+          </td>
+          <td>
+            <a routerLink="/atelier/detail_reparation/{{ car._id }}">
+              <button class="btn btn-primary" >Détails</button>
+            </a>
+          </td>
+          <td>
+            <a routerLink="/atelier/bon_de_sortie/{{ car._id }}">
+              <button class="btn btn-primary" >Voir</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </app-card>
+  <div class="my-container">
+    <ng-template #customLoadingTemplate>
+        <div class="custom-class">
+            <h3>
+                Loading...
+            </h3>
+        </div>
+    </ng-template>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+  </div>
+</div>
+
+

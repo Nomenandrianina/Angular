@@ -1,0 +1,59 @@
+<div *ngIf="message" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>{{ message }}</strong>
+  <button type="button" (click)="removeMessage" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="row">
+  <app-card cardTitle="Réception des voitures">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search..."
+        [(ngModel)]="filterTerm"
+      />
+    </div>
+    <table   class="table">
+      <thead>
+        <tr>
+          <th>Images</th>
+          <th>Marques</th>
+          <th>Types</th>
+          <th>Moteurs</th>
+          <th>Immatricules</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of list | filter: filterTerm">
+          <td><img src="{{ car.image }}" alt="" style="width: 100px;border-radius: 5px;"></td>
+          <td>{{ car.marque }}</td>
+          <td>{{ car.type }}</td>
+          <td>{{ car.moteur }}</td>
+          <td>{{ car.immatriculation }}</td>
+          <td *ngIf="car.etat == '0'">
+            <button class="btn btn-secondary" (click)="valideEnter(car._id)">valider</button>
+          </td>
+          <td *ngIf="car.etat == '1'">
+            <span class="badge text-bg-success">Reçu par le responsable</span>
+          </td>
+          <td *ngIf="car.etat == '2'">
+            <span class="badge text-bg-success">Réparé et payé</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </app-card>
+</div>
+
+<div class="my-container">
+  <ng-template #customLoadingTemplate>
+      <div class="custom-class">
+          <h3>
+              Loading...
+          </h3>
+      </div>
+  </ng-template>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+</div>

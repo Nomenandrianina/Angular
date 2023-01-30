@@ -1,0 +1,70 @@
+<div class="auth-main">
+  <div class="auth-wrapper v3">
+    <div class="auth-form">
+      <div class="card mt-5">
+        <div class="card-body">
+          <a href="javascript:" class="d-flex justify-content-center mt-3">
+            <img src="assets/images/logos.png" style="width: 185px;">
+          </a>
+          <form class="pt-3" (ngSubmit)="Inscription()" [formGroup]="registerform"  method="POST">
+            <h5 class="my-4 d-flex justify-content-center"> Sign Up with Email address </h5>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <input type="text" formControlName="firstname"  class="form-control" id="floatingInput" placeholder="name@example.com" />
+                  <label for="floatingInput">Nom</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <input type="text" formControlName="name" class="form-control" id="floatingInput" placeholder="name@example.com" />
+                  <label for="floatingInput">Prénom</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-floating mb-3">
+              <select class="form-select" formControlName="role" id="floatingInput">
+                  <option value="Atelier">Atelier</option>
+                  <option value="Financier">Financier</option>
+              </select>
+              <label for="floatingInput">Role</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
+              <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" formControlName="password" class="form-control" id="floatingInput" placeholder="name@example.com" />
+              <label for="floatingInput">Mot de passe</label>
+            </div>
+            <div class="form-check mt-3s">
+              <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
+              <label class="form-check-label" for="customCheckc1">
+                <h5>Agree with <span>Terms & Condition.</span></h5>
+              </label>
+            </div>
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-secondary p-2">INSCRIPTION</button>
+            </div>
+          </form>
+          <hr />
+          <span *ngIf="message!=null" style="color: red;">{{ message }}</span>
+          <!-- <h5 class="d-flex justify-content-center">
+            <a [routerLink]="['/guest/login']"> Already have an account? </a>
+          </h5> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <div class="my-container">
+    <ng-template #customLoadingTemplate>
+        <div class="custom-class">
+            <h3>
+                Loading...
+            </h3>
+        </div>
+    </ng-template>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+  </div>

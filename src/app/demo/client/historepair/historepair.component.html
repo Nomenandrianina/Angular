@@ -1,0 +1,50 @@
+<div class="row">
+  <app-card>
+    <div class="row">
+      <div class="col-sm-5">
+        <!-- <img  [src]="car.image" style="width: 380px;height: 379px;border-radius: 102px;object-fit: contain;"  alt="image"> -->
+        <div class="card" style="width: 22rem;">
+          <img [src]="car.image" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ car.marque +' '+ car.type }}</h5>
+            <p class="card-text">Immatricule : {{ car.immatriculation }}</p>
+          </div>
+          <div class="card-body">
+            <p class="card-text"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1" style="height: 439px;
+          border-left: 1px solid;"></div>
+      <div class="col-sm-6">
+        <div class="card text-center" *ngFor="let item of list">
+          <div class="card-header">
+            {{ item.Car.marque +' '+ item.Car.type}}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ item.Piece.piece_name }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+            <a class="btn btn-outline-secondary">${{ (item.Piece.prix* item.quantite) +item.Piece.main_oeuvre }}</a>
+          </div>
+          <div class="card-footer text-muted" *ngIf="item.date_fin">
+            En réparation il y a {{ calculateDiff(item.date_debut) }}  | Achevé il y a {{ calculateDiff(item.date_fin) }}
+          </div>
+          <div class="card-footer text-muted" *ngIf="!item.date_fin">
+            En réparation il y a {{ calculateDiff(item.date_debut) }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-container">
+      <ng-template #customLoadingTemplate>
+          <div class="custom-class">
+              <h3>
+                  Loading...
+              </h3>
+          </div>
+      </ng-template>
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+    </div>
+  </app-card>
+
+</div>

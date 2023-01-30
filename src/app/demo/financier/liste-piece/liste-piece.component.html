@@ -1,0 +1,51 @@
+<div *ngIf="message_delete" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Suppression réussie!</strong>
+  <button type="button" (click)="removeMessage" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="row">
+  <app-card cardTitle="Réception des voitures">
+    <div class="form-group">
+      <span style="padding-left:82%;padding-bottom: 20px;">
+        <button class="btn btn-success" (click)="Add_new_piece()">+ Nouveau pièce</button>
+      </span>
+    </div>
+    <div class="form-group">
+      <div class="col-md-3">
+      <input type="text" class="form-control" placeholder="rechercher" [(ngModel)]="filterTerm"/>
+      </div>
+    </div>
+    <table  class="table">
+      <thead>
+        <tr>
+          <th>Images</th>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>main_oeuvre </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pieces of list | filter: filterTerm">
+          <td><img src="{{ pieces.photo }}" alt="" style="width: 100px;border-radius: 5px;"></td>
+          <td>{{ pieces.piece_name }}</td>
+          <td>{{ pieces.prix }} Ar</td>
+          <td>{{ pieces.main_oeuvre }} Ar</td>
+          <td>  
+            <button class="btn btn-danger" (click)="Delete_piece(pieces._id)">delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </app-card>
+</div>
+
+<div class="my-container">
+  <ng-template #customLoadingTemplate>
+      <div class="custom-class">
+          <h3>
+              Loading...
+          </h3>
+      </div>
+  </ng-template>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+</div>

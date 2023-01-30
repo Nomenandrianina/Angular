@@ -1,0 +1,53 @@
+<div class="row">
+  <app-card cardTitle="Avancement de réparation de ma voiture">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search..."
+        [(ngModel)]="filterTerm"
+      />
+    </div>
+    <table   class="table datatable-table">
+      <thead>
+        <tr>
+          <th>Images</th>
+          <th>Matricule</th>
+          <th>Marques</th>
+          <th>Types</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of list | filter: filterTerm">
+          <td><img src="{{ car.image }}" alt="" style="width: 100px;border-radius: 5px;"></td>
+          <td>{{ car.immatriculation }}</td>
+          <td>{{ car.marque }}</td>
+          <td>{{ car.type }}</td>
+          <td>
+            <a routerLink="/list_reparation/{{ car._id }}">
+              <button class="btn btn-primary" >Voir réparation</button>
+            </a>
+          </td>
+          <td>
+            <a routerLink="/facture/{{ car._id }}">
+              <button class="btn btn-success" >Facture</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </app-card>
+  <div class="my-container">
+    <ng-template #customLoadingTemplate>
+        <div class="custom-class">
+            <h3>
+                Loading...
+            </h3>
+        </div>
+    </ng-template>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+  </div>
+</div>

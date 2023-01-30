@@ -1,0 +1,168 @@
+<section style="background-color: rgb(255, 253, 253);">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="{{ list.Car.image }}" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{ list.Car.marque +' '+ list.Car.type }}</h5>
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-20">Avancement du réparation</h2>
+            <circle-progress [percent]='list.avancement' [radius]='100' [outerStrokeWidth]="16" [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300"></circle-progress>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Marque</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ list.Car.marque }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Type</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ list.Car.type }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Moteur</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ list.Car.moteur }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Immatricule</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ list.Car.immatriculation }}</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Piéce pour la réparation</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ list.Piece.piece_name }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Déscription du problème</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ list.description }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Coût du réparation</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ list.Piece.prix }} $</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Main d'oeuvre</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ list.Piece.main_oeuvre }} $</p>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        <form (ngSubmit)="onsubmit()"  [formGroup]="form"  method="POST">
+        <div class="row" *ngIf="list.avancement < 100 && list.status == 'En cours'">
+          <div class="col-md-9">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">Edition de l'avancement</p>
+                    </div>
+                    <div class="col-sm-7">
+                      <input class="form form-control" formControlName="avancement" type="number" style="width: 50%;">
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <button type="submit" class="btn btn-primary">Valider</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <form (ngSubmit)="terminer()"  [formGroup]="termineForm"  method="POST">
+      <div class="row" *ngIf="list.avancement == 100 && list.status == 'En cours'">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <button type="submit" class="btn btn-success" style="width: 100%;">Terminer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+
+      <div class="row" *ngIf="list.avancement == 100 && list.status == 'Terminer'">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <button  class="btn btn-success" style="width: 100%;" disabled>Terminer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+    <div class="my-container">
+      <ng-template #customLoadingTemplate>
+          <div class="custom-class">
+              <h3>
+                  Loading...
+              </h3>
+          </div>
+      </ng-template>
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+    </div>
+  </div>
+
+
+</section>
