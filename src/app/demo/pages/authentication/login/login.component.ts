@@ -21,7 +21,7 @@ export default class LoginComponent {
   val = 'nomenandrianinaantonio@gmail.com';
   public loading = false;
   loginForm = new FormGroup({
-    email:  new FormControl(null, [ Validators.required, Validators.email]),
+    email:  new FormControl('nomenandrianinaantonio@gmail.com', [ Validators.required, Validators.email]),
     mdp:  new FormControl(null, [ Validators.required]),
   });
 
