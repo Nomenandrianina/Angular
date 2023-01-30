@@ -28,9 +28,9 @@
         <tr *ngFor="let pieces of list | filter: filterTerm">
           <td><img src="{{ pieces.photo }}" alt="" style="width: 100px;border-radius: 5px;"></td>
           <td>{{ pieces.piece_name }}</td>
-          <td>{{ pieces.prix }} Ar</td>
-          <td>{{ pieces.main_oeuvre }} Ar</td>
-          <td>  
+          <td>$ {{ pieces.prix }}</td>
+          <td>$ {{ pieces.main_oeuvre }}</td>
+          <td>
             <button class="btn btn-danger" (click)="Delete_piece(pieces._id)">delete</button>
           </td>
         </tr>
