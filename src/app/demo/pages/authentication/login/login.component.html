@@ -38,7 +38,7 @@
             <span class="error text-danger" *ngIf="email.invalid && (email.dirty || email.touched)" style="color: red">Veuillez-entrez votre email!</span>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control" formControlName="mdp" id="password" value="12345" />
+            <input type="password" class="form-control" formControlName="mdp" id="password" value="{{ mdp }}" />
             <label for="password">Mot de passe</label>
             <span class="error text-danger" *ngIf="mdp.invalid && (mdp.dirty || mdp.touched)" style="color: red" >Veuillez-entrez votre mot de passe!</span>
           </div>

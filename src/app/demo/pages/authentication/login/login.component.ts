@@ -22,7 +22,7 @@ export default class LoginComponent {
   public loading = false;
   loginForm = new FormGroup({
     email:  new FormControl('nomenandrianinaantonio@gmail.com', [ Validators.required, Validators.email]),
-    mdp:  new FormControl(null, [ Validators.required]),
+    mdp:  new FormControl('wyCP6AmJeg3T8vi', [ Validators.required]),
   });
 
   constructor(private authService: AuthService,private router: Router) {
